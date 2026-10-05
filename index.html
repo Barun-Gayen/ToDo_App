@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>To-Do App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app">
+        <header class="top">
+            <div>
+                <h1>My Tasks</h1>
+                <p class="date" id="today"></p>
+            </div>
+            <button type="button" class="ghost" id="theme-toggle">Dark mode</button>
+        </header>
+
+        <section class="progress" aria-label="Progress">
+            <div class="ruler" id="ruler" role="progressbar" aria-label="Tasks completed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="fill" id="fill"></div>
+            </div>
+            <p class="progress-label" id="progress-label"></p>
+        </section>
+
+        <form id="add-form" novalidate>
+            <div class="add-row">
+                <label class="sr" for="task-input">New task</label>
+                <input id="task-input" class="field" type="text" maxlength="120" placeholder="What needs doing?" autocomplete="off">
+                <button type="submit" class="btn-primary">Add task</button>
+            </div>
+            <p class="form-error" id="form-error" role="alert"></p>
+            <div class="prio" role="radiogroup" aria-label="Priority">
+                <span class="prio-label">Priority</span>
+                <label class="chip"><input type="radio" name="priority" value="high"><span class="chip-face high">High</span></label>
+                <label class="chip"><input type="radio" name="priority" value="med" checked><span class="chip-face med">Medium</span></label>
+                <label class="chip"><input type="radio" name="priority" value="low"><span class="chip-face low">Low</span></label>
+            </div>
+        </form>
+
+        <nav class="filters" id="filters" aria-label="Filter tasks">
+            <button type="button" data-filter="all" aria-pressed="true">All <span class="n" id="count-all">0</span></button>
+            <button type="button" data-filter="active" aria-pressed="false">Open <span class="n" id="count-active">0</span></button>
+            <button type="button" data-filter="done" aria-pressed="false">Done <span class="n" id="count-done">0</span></button>
+        </nav>
+
+        <ul id="task-list" class="task-list"></ul>
+
+        <div class="foot">
+            <p id="left-text"></p>
+            <div class="foot-actions">
+                <button type="button" class="link-btn" id="sort-btn">Sort by priority</button>
+                <button type="button" class="link-btn" id="clear-btn">Clear done</button>
+            </div>
+        </div>
+
+        <p class="hint">Drag a task to reorder it, or press Alt + Up or Down. Double-click a task to edit it.</p>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+        <span id="toast-msg"></span>
+        <button type="button" id="toast-undo">Undo</button>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
